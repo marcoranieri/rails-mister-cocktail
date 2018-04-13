@@ -1,0 +1,19 @@
+<div class="banner" style="background-image: linear-gradient(-225deg, rgba(0,101,168,0.6) 0%, rgba(0,36,61,0.6) 50%), url('http://www.madeincocktails.com/wp-content/uploads/2016/02/blue-kamikaze-rivisitato.jpg');">
+
+  <div class="banner-content">
+    <h1 class="big-btn">Add a cocktail</h1>
+      <p>
+        <%= simple_form_for @cocktail do |f| %>
+          <%= f.input :name, label: 'my new Cocktail is: ',
+            placeholder: "ex: 'Boulevardier'",
+            error: 'Username is mandatory, please specify one',
+            label_html: { class: 'form_text_input' } %>
+
+        <%= f.submit "Add a cocktail", class: "btn-medium big-btn" %>
+
+        <% end %>
+      </p>
+    <%= link_to "Go back to homepage", cocktails_path, class: "btn-medium  big-btn" %>
+  </div>
+</div>
+

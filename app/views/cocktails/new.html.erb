@@ -8,6 +8,8 @@
             placeholder: "ex: 'Boulevardier'",
             error: 'Username is mandatory, please specify one',
             label_html: { class: 'form_text_input' } %>
+          <%= f.input :photo %>
+          <%= f.input :photo_cache, as: :hidden %>
 
         <%= f.submit "Add a cocktail", class: "btn-medium big-btn" %>
 

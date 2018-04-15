@@ -2,14 +2,14 @@
 <% @cocktails.each do |cocktail|  %>
 
 
-  <div class="container">
+<!--   <div class="container">
     <div class="row">
       <div class="col-xs-12 col-sm-4">
 
         <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('https://kitt.lewagon.com/placeholder/cities/shanghai');">
-          <div class="card-category">Popular</div>
+          <div class="card-category">Your <strong><%= cocktail.id %>th</strong> drink</div>
           <div class="card-description">
-            <h2><%=link_to cocktail.name, cocktail_path(cocktail)%></h2>
+            <h2>cocktail.name</h2>
             <p>Very cool cocktail!</p>
           </div>
           <img class="card-user" src="https://kitt.lewagon.com/placeholder/users/tgenaitay">
@@ -18,8 +18,22 @@
 
       </div>
     </div>
-  </div>
+  </div> -->
 
+
+<% if cocktail.photo? == false %>
+
+
+
+<%= cl_image_tag("20171013161221_cocktails.jpg", height: 150, width: 200, crop: :fill)  %>
+
+
+<% else  %>
+
+    <%= cl_image_tag cocktail.photo, height: 150, width: 200, crop: :fill %>
+
+<% end  %>
+<%= link_to cocktail.name, cocktail_path(cocktail) %> <br>
 
 <% end %>
 

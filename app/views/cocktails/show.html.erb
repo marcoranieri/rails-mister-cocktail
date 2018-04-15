@@ -1,24 +1,30 @@
-<h1>The cocktail is:</h1>
-<%= @cocktail.name %>
+<h1><em>The cocktail is:</em> <strong><%= @cocktail.name %></strong></h1>
+
+
+
 <br>
 <br>
+
 <% @cocktail.doses.each do |dose|%>
-<ul>
-  <li>
-    <h5>Description</h5>
-    <%= dose.description  %>
+    <p>
+      Description: <strong><%= dose.description %></strong> of
+        <strong><%= dose.ingredient.name %></strong>
+        <%= link_to "Delete dose", cocktail_dose_path(dose),
+          method: :delete, class: "btn btn-danger" %>
+    </p>
     <br>
-    <h6>Ingredients</h6>
-    <%= dose.ingredient.name %>
-  </li>
-</ul>
 <% end %>
 
 
 <%= simple_form_for [@cocktail, @dose] do |f| %>
-<%= f.input :description %>
-<%= f.association :ingredient %>
-<%= f.submit "Add a cocktail", class: "btn btn-primary" %>
+<%= f.association :ingredient %> <br>
+<%= f.input :description %> <br>
+<%= f.submit "Add dose and ingredient", class: "btn btn-primary" %>
 <% end %>
+
 <br>
+<br>
+
 <%= link_to "Go back to homepage", cocktails_path, class: "btn btn-warning" %>
+
+

@@ -1,43 +1,61 @@
 <h1>Your Cocktails</h1>
-<% @cocktails.each do |cocktail|  %>
+<!-- from DESTROY:method, show the name of the cockt destroied -->
+<p class="flash-notice"><%= flash[:notice] %></p>
 
+<div class="container"> <!-- BOOTSTRAP here or layout/application around YIELD in the body (div.container will be around all view pages) -->
+  <div class="row"> <!-- and container must be OUTSIDE loop.each or grid will not works (cause we are creating each time .container.row) -->
 
-<!--   <div class="container">
-    <div class="row">
+    <% @cocktails.each do |cocktail| %>
       <div class="col-xs-12 col-sm-4">
+<!-- CARD -->
+<!-- on loremflickr we interpolate (downcase, strip and gsub the whitespace) the name to automatic research img with that cockt name -->
+        <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('https://loremflickr.com/320/175/<%= cocktail.name.downcase.strip.gsub(/\s+/, "+") %>+drink');"> <!-- +drink is added to the URL research. Inspect the element for full URL -->
+          <div class="card-category">Popular</div>
 
-        <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('https://kitt.lewagon.com/placeholder/cities/shanghai');">
-          <div class="card-category">Your <strong><%= cocktail.id %>th</strong> drink</div>
           <div class="card-description">
-            <h2>cocktail.name</h2>
-            <p>Very cool cocktail!</p>
+
+            <h2><%= link_to cocktail.name, cocktail_path(cocktail), class: "btn btn-success btn-lg" %></h2>
+
+            <p><%= link_to "Delete", cocktail_path(cocktail), method: :delete, class: "btn btn-danger" %></p>
+
           </div>
+
           <img class="card-user" src="https://kitt.lewagon.com/placeholder/users/tgenaitay">
-          <a class="card-link" href="#" ></a>
+
         </div>
+ <!-- CARD end -->
 
       </div>
-    </div>
-  </div> -->
+    <% end %>
+  </div><!-- END of ROW -->
+</div><!-- END of CONTAINER -->
+
+<%= link_to "create new cocktail", new_cocktail_path, class: "btn btn-info btn-lg" %>
+
+<%= link_to "Go HOME", cocktails_path, class: "btn btn-danger" %>
 
 
-<% if cocktail.photo? == false %>
+
+<!-- CLOUDINARY - if object has photo uploaded use it, else use a placheholder
+
+  < | % if cocktail.photo? == false %>
 
 
 
-<%= cl_image_tag("20171013161221_cocktails.jpg", height: 150, width: 200, crop: :fill)  %>
+  <|%= cl_image_tag("20171013161221_cocktails.jpg", height: 150, width: 200, crop: :fill)  %>
 
 
-<% else  %>
+  <|% else  %>
 
-    <%= cl_image_tag cocktail.photo, height: 150, width: 200, crop: :fill %>
+  <|%= cl_image_tag cocktail.photo, height: 150, width: 200, crop: :fill %>
 
-<% end  %>
-<%= link_to cocktail.name, cocktail_path(cocktail) %> <br>
+  <|% end  %>
 
-<% end %>
+  <|%= link_to cocktail.name, cocktail_path(cocktail) %> <br>
 
-<%= link_to "Add a new cocktail", new_cocktail_path, class: "btn btn-warning" %>
+  <|% end %>
+
+  <|%= link_to "Add a new cocktail", new_cocktail_path, class: "btn btn-warning" %> -->
 
 
 

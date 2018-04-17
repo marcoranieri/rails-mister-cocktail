@@ -1,4 +1,6 @@
 class Dose < ApplicationRecord
+# cocktails <----> doses <----> ingredient
+
   belongs_to :ingredient
   belongs_to :cocktail
 

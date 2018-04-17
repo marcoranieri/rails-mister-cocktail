@@ -1,30 +1,25 @@
-<h1><em>The cocktail is:</em> <strong><%= @cocktail.name %></strong></h1>
-
-
-
+<h1><em><strong><%= @cocktail.name.capitalize %></strong></em></h1>
 <br>
+<%= link_to "Add dose", new_cocktail_dose_path(@cocktail), class: "btn btn-info" %>
 <br>
+---------<br>
 
 <% @cocktail.doses.each do |dose|%>
-    <p>
-      Description: <strong><%= dose.description %></strong> of
-        <strong><%= dose.ingredient.name %></strong>
-        <%= link_to "Delete dose", cocktail_dose_path(dose),
-          method: :delete, class: "btn btn-danger" %>
-    </p>
-    <br>
+
+  <p>
+    - <strong><big><%= dose.description %></big></strong> <em><small>of</small> <strong><%= dose.ingredient.name %></strong></em>
+
+      <%= link_to "Delete dose", cocktail_dose_path(dose),
+        method: :delete, class: "btn btn-danger btn-xs" %>
+  </p>
+  <br>
+
 <% end %>
 
-
-<%= simple_form_for [@cocktail, @dose] do |f| %>
-<%= f.association :ingredient %> <br>
-<%= f.input :description %> <br>
-<%= f.submit "Add dose and ingredient", class: "btn btn-primary" %>
-<% end %>
-
-<br>
+---------<br>
 <br>
 
-<%= link_to "Go back to homepage", cocktails_path, class: "btn btn-warning" %>
+<%= link_to "Go Home", cocktails_path, class: "btn btn-warning" %>
 
 
+<!-- you can also CREATE a views/doses/NEW.html.erb and put the "form" there if you want to "insert doses/ingredient" in a new page ((already DONE!))-->

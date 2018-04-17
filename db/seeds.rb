@@ -11,13 +11,15 @@
 #Ingredient.create(name: "ice")
 #Ingredient.create(name: "mint leaves")
 
+
+Cocktail.destroy_all
+
 require 'open-uri'
 require 'json'
 
 url = "https://www.thecocktaildb.com/api/json/v1/1/list.php?i=list"
 
 parsed_ingredients = JSON.parse(open(url).read)
-
 ingredient_pairs = parsed_ingredients["drinks"]
 
 Ingredient.delete_all
@@ -26,3 +28,15 @@ ingredient_pairs.each do |ing|
  @ing = Ingredient.new(name: ing["strIngredient1"])
  @ing.save
 end
+
+
+mojito = Cocktail.new(name: "mojito")
+mojito.save!
+white = Cocktail.new(name: "white russian")
+white.save!
+negroni = Cocktail.new(name: "negroni")
+negroni.save!
+spritz = Cocktail.new(name: "spritz")
+spritz.save!
+ginfizz = Cocktail.new(name: "ginfizz")
+ginfizz.save!
